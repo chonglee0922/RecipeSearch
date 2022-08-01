@@ -7,13 +7,50 @@
 
         <title>Recipe Search</title>
     </head>
-
+<!---
     <body>
         <h1>Recipe Search</h1>
         <p>Search for recipes by ingredients.</p>
-        <form class="search-bar" action="">
-            <input type="text" placeholder="Ex: onions" id="search" required>
+        <input type="text" placeholder="Ex: onions" id="input" required>
+        <button onclick="foo()">Search</button>
+
+        <script type="text/javascript">
+            function foo() {
+                let a = document.getElementById("input").value
+                console.log(a); 
+            }
+        </script>
+    </body>
+-->
+    <body>
+        <h1>Recipe Search</h1>
+        <h3>Search for recipes by ingredients.</h3>
+        <form action="" onsubmit="foo(); return false;">
+            <input type="text" placeholder="Ex: onions" id="input" required>
             <input type="submit" value="Search">
         </form>
+
+        <div class="box">
+            <div class="boxLeft">
+                <div class="titleLeft">
+                    <h4>Dishes You Can Make</h4>
+                </div>
+                <div class="scrollLeft">
+                    <ul class="dishList"></ul>
+                </div>
+            </div>
+
+            <div class="boxRight">
+                <div class="titleRight">
+                    <h4>Dish Information</h4>
+                </div>
+                <div class="scrollRight">
+                    <ul class="dishInfo"></ul>
+                </div>
+            </div>
+        </div>
     </body>
+
+    <script src="main.js"></script>
+
 </html>
