@@ -16,6 +16,7 @@ const dish_list = document.querySelector(".dishList");
 const dish_info = document.querySelector(".dishInfo");
 
 function firstAPIcall() {
+    dish_list.innerHTML = "";
      let ingr = document.getElementById("input").value;
      apiData1.ingredients = String(ingr);
      console.log(ingr); 
