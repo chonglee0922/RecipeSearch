@@ -13,31 +13,84 @@ const apiData2 = {
 };
 
 const dish_list = document.querySelector(".dishList");
-const dish_info = document.querySelector(".dishInfo");
+const dish_info = document.querySelector(".info");
 
 function firstAPIcall() {
     dish_list.innerHTML = "";
-     let ingr = document.getElementById("input").value;
-     apiData1.ingredients = String(ingr);
-     console.log(ingr); 
+    let ingr = document.getElementById("input").value;
+    apiData1.ingredients = String(ingr);
+    //console.log(ingr); 
 
-     const {url, findBy, ingredients, apiKey} = apiData1;
-     const apiURL = `${url}${findBy}${ingredients}${apiKey}`;
-     apiData1.ingredients = "";
-     console.log(apiURL);
-     console.log(apiData1.ingredients);
+    const {url, findBy, ingredients, apiKey} = apiData1;
+    const apiURL1 = `${url}${findBy}${ingredients}${apiKey}`;
+    apiData1.ingredients = "";
+    //console.log(apiURL1);
+    //console.log(apiData1.ingredients);
 
-     fetch(apiURL)
-        .then(response => response.json())
-        .then((data1) => {
-            for (let i = 0; i < data1.length; i++) {
-                let newListElement = document.createElement("li");
-                let dishName = document.createElement("p");
-                dishName.setAttribute("target", "_blank");
-                //dishName.addEventListener("click", function() {secondAPIcall(data[i].id);});
-                dishName.textContent = data1[i].title;
-                newListElement.appendChild(dishName);
-                dish_list.appendChild(newListElement);
+    fetch(apiURL1)
+    .then(response => response.json())
+    .then((data1) => {
+        for (let i = 0; i < data1.length; i++) {
+            let newListElement = document.createElement("li");
+            let dishName = document.createElement("p");
+            dishName.setAttribute("target", "_blank");
+            dishName.addEventListener("click", function() {secondAPIcall(data1[i].id);});
+            dishName.textContent = data1[i].title;
+            newListElement.appendChild(dishName);
+            dish_list.appendChild(newListElement);
+        }
+    })
+}
+
+function secondAPIcall(dishID) {
+    dish_info.innerHTML = "";
+    apiData2.recipeID = String(dishID);
+    //console.log(apiData2.recipeID);
+
+    const {url, recipeID, etc, apiKey} = apiData2;
+    const apiURL2 = `${url}${recipeID}${etc}${apiKey}`;
+    apiData2.recipeID = "";
+    //console.log(apiURL2);
+    //console.log(apiData2.recipeID);
+
+    fetch(apiURL2)
+    .then(response => response.json())
+    .then((data2) => {
+
+        let dishName = document.createElement("h4");
+        let dishPicture = document.createElement("img");
+        let ingredients = document.createElement("p");
+        let readyIn = document.createElement("p");
+        let link = document.createElement("a");
+        
+        dishName.textContent = data2.title;
+        dishPicture.setAttribute("src", data2.image);
+        dishPicture.setAttribute("alt", data2.title);
+        ingredients.textContent = "Ingredients: ";
+        readyIn.textContent = "Ready In: "+String(data2.readyInMinutes)+" Minutes";
+        link.setAttribute("href", data2.sourceUrl);
+        link.textContent = "Link To Full Recipe Instructions"
+        link.setAttribute("target", "_blank");
+
+        for (let i = 0; i < data2.extendedIngredients.length; i++) {
+            let ingredient = data2.extendedIngredients[i].name;
+            if (i != 0) {
+                ingredients.innerText += ", ";
             }
-        })
+            console.log(ingredient);
+            ingredients.innerText += ingredient;
+        }
+
+        console.log(dishName.textContent);
+        console.log(dishPicture.innerHTML);
+        console.log(ingredients.textContent);
+        console.log(readyIn.textContent);
+        console.log(link.textContent);
+
+        dish_info.appendChild(dishName);
+        dish_info.appendChild(dishPicture);
+        dish_info.appendChild(ingredients);
+        dish_info.appendChild(readyIn);
+        dish_info.appendChild(link);
+    })
 }
