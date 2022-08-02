@@ -25,6 +25,7 @@
     <body>
         <h1>Recipe Search</h1>
         <h3>Search for recipes by ingredients.</h3>
+        <p>Note: Separate multiple ingredients with a comma (Ex. onions, carrots)</p>
         <form action="" onsubmit="firstAPIcall(); return false;">
             <input type="text" placeholder="Ex: onions" id="input" required>
             <input type="submit" value="Search">
@@ -35,6 +36,9 @@
                 <div class="titleLeft">
                     <h3>Dishes You Can Make</h3>
                 </div>
+                <div>
+                    <p class="placeholderLeft">Enter any ingredients above!</p>
+                </div>
                 <div class="scrollLeft">
                     <ul class="dishList"></ul>
                 </div>
@@ -43,6 +47,9 @@
             <div class="boxRight">
                 <div class="titleRight">
                     <h3>Dish Information</h3>
+                </div>
+                <div>
+                    <p class="placeholderRight">Choose a dish!</p>
                 </div>
                 <div class="scrollRight">
                     <div class = "info">
