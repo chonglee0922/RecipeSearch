@@ -14,9 +14,15 @@ const apiData2 = {
 
 const dish_list = document.querySelector(".dishList");
 const dish_info = document.querySelector(".info");
+const placeholder_left = document.querySelector(".placeholderLeft");
+const placeholder_right = document.querySelector(".placeholderRight");
 
 function firstAPIcall() {
     dish_list.innerHTML = "";
+    dish_info.innerHTML = "";
+    placeholder_left.innerHTML = "";
+    placeholder_right.innerHTML = "";
+    placeholder_right.innerText = "Choose a dish!";
     let ingr = document.getElementById("input").value;
     apiData1.ingredients = String(ingr);
     //console.log(ingr); 
@@ -30,20 +36,25 @@ function firstAPIcall() {
     fetch(apiURL1)
     .then(response => response.json())
     .then((data1) => {
-        for (let i = 0; i < data1.length; i++) {
-            let newListElement = document.createElement("li");
-            let dishName = document.createElement("p");
-            dishName.setAttribute("target", "_blank");
-            dishName.addEventListener("click", function() {secondAPIcall(data1[i].id);});
-            dishName.textContent = data1[i].title;
-            newListElement.appendChild(dishName);
-            dish_list.appendChild(newListElement);
+        if (data1.length == 0) {
+            placeholder_left.innerText = "There are no dishes with the entered ingredients!"
+        } else {
+            for (let i = 0; i < data1.length; i++) {
+                let newListElement = document.createElement("li");
+                let dishName = document.createElement("p");
+                dishName.setAttribute("target", "_blank");
+                dishName.addEventListener("click", function() {secondAPIcall(data1[i].id);});
+                dishName.textContent = data1[i].title;
+                newListElement.appendChild(dishName);
+                dish_list.appendChild(newListElement);
+            }
         }
     })
 }
 
 function secondAPIcall(dishID) {
     dish_info.innerHTML = "";
+    document.querySelector(".placeholderRight").innerHTML = "";
     apiData2.recipeID = String(dishID);
     //console.log(apiData2.recipeID);
 
@@ -81,11 +92,13 @@ function secondAPIcall(dishID) {
             ingredients.innerText += ingredient;
         }
 
+        /*
         console.log(dishName.textContent);
         console.log(dishPicture.innerHTML);
         console.log(ingredients.textContent);
         console.log(readyIn.textContent);
         console.log(link.textContent);
+        */
 
         dish_info.appendChild(dishName);
         dish_info.appendChild(dishPicture);
