@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Recipe Search</title>
     </head>
-<!---
-    <body>
-        <h1>Recipe Search</h1>
-        <p>Search for recipes by ingredients.</p>
-        <input type="text" placeholder="Ex: onions" id="input" required>
-        <button onclick="foo()">Search</button>
 
-        <script type="text/javascript">
-            function foo() {
-                let a = document.getElementById("input").value
-                console.log(a); 
-            }
-        </script>
+    <body>
+        <div class="topSection">
+            <h1>Recipe Search</h1>
+            <p class="slogan">Don't know what to make? Enter any ingredients to find recipes!</p>
+            <p class="note">Note: Separate multiple ingredients with a comma (Ex: onions, carrots)</p>
+            <form action="" onsubmit="firstAPIcall(); return false;">
+                <input class="searchBar" type="text" placeholder="Ex: onions" id="input" required>
+                <input class="searchButton" type="submit" value="Search">
+            </form>
+        </div>
     </body>
--->
-    <body>
-        <h1>Recipe Search</h1>
-        <h3>Search for recipes by ingredients.</h3>
-        <p>Note: Separate multiple ingredients with a comma (Ex. onions, carrots)</p>
-        <form action="" onsubmit="firstAPIcall(); return false;">
-            <input type="text" placeholder="Ex: onions" id="input" required>
-            <input type="submit" value="Search">
-        </form>
 
+    <section class="rest">
         <div class="box">
             <div class="boxLeft">
                 <div class="titleLeft">
@@ -58,7 +50,7 @@
                 </div>
             </div>
         </div>
-    </body>
+    </section>
 
     <script src="main.js"></script>
 
