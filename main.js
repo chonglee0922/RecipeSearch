@@ -46,6 +46,7 @@ function firstAPIcall() {
                 dishName.addEventListener("click", function() {secondAPIcall(data1[i].id);});
                 dishName.textContent = data1[i].title;
                 newListElement.appendChild(dishName);
+                newListElement.setAttribute("class", "listElement");
                 dish_list.appendChild(newListElement);
             }
         }
@@ -75,13 +76,16 @@ function secondAPIcall(dishID) {
         let link = document.createElement("a");
         
         dishName.textContent = data2.title;
+        dishName.setAttribute("class", "dishInfoTitle");
         dishPicture.setAttribute("src", data2.image);
         dishPicture.setAttribute("alt", data2.title);
+        dishPicture.setAttribute("class", "dishPicture");
         ingredients.textContent = "Ingredients: ";
         readyIn.textContent = "Ready In: "+String(data2.readyInMinutes)+" Minutes";
         link.setAttribute("href", data2.sourceUrl);
         link.textContent = "Link To Full Recipe Instructions"
         link.setAttribute("target", "_blank");
+        link.setAttribute("class", "link");
 
         for (let i = 0; i < data2.extendedIngredients.length; i++) {
             let ingredient = data2.extendedIngredients[i].name;
