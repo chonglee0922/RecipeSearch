@@ -20,7 +20,7 @@ const placeholder_right = document.querySelector(".placeholderRight");
 function firstAPIcall() {
     dish_list.innerHTML = "";
     dish_info.innerHTML = "";
-    placeholder_left.innerHTML = "";
+    placeholder_left.innerText = "Choose a dish from below!";
     placeholder_right.innerHTML = "";
     placeholder_right.innerText = "Choose a dish!";
     let ingr = document.getElementById("input").value;
@@ -54,7 +54,7 @@ function firstAPIcall() {
 
 function secondAPIcall(dishID) {
     dish_info.innerHTML = "";
-    document.querySelector(".placeholderRight").innerHTML = "";
+    document.querySelector(".placeholderRight").textContent = "More Information Below!";
     apiData2.recipeID = String(dishID);
     //console.log(apiData2.recipeID);
 
